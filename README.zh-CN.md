@@ -1,7 +1,7 @@
-# ZTE U60 Pro（MU5250）数据服务：zwrt-datad
+# Luya-Z 数据服务：zwrt-datad
 
 `zwrt-datad` 跑在设备本机，把 `ubus`、`uci`、`sysfs` 和必要的设备日志整理成稳定的 JSON 状态，通过 HTTP 和 SSE 提供给触屏界面、脚本和其他本机服务。
-本仓库最初基于 [33333s/zwrt-datad](https://github.com/33333s/zwrt-datad)，现在为 U60 Pro（MU5250）独立维护：加了 MU5250 的对齐修复、慢数据缓存、单一的 ubus 读取者和写操作层，**并删掉了原版的自更新（OTA）、云端、WebShell 和 `/ubus` 透传，程序不连任何外网地址**。
+本仓库最初基于 [33333s/zwrt-datad](https://github.com/33333s/zwrt-datad)，现在作为 **Luya-Z** 的一部分独立维护（适用硬件：中兴 U60 Pro，MU5250；和中兴没有关系）：加了 MU5250 的对齐修复、慢数据缓存、单一的 ubus 读取者和写操作层，**并删掉了原版的自更新（OTA）、云端、WebShell 和 `/ubus` 透传，程序不连任何外网地址**。
 
 [English](README.md) · **中文** · [API 文档](docs/API.md)
 
@@ -9,9 +9,9 @@
 
 | 仓库 | 设备上的角色 |
 |---|---|
-| [manager](https://github.com/faying/zte-u60-pro-mu5250-manager) | `zte-agent`（:9090）+ 管理网页 + 装机包 |
-| [touch-ui](https://github.com/faying/zte-u60-pro-mu5250-touch-ui) | 前面板触屏界面、屏幕守护进程、进程监督与 Wi-Fi 兜底脚本 |
-| **[data-service](https://github.com/faying/zte-u60-pro-mu5250-data-service)**（本仓库） | `zwrt-datad`：本机数据服务（`127.0.0.1:9460` 的 `/v2/state` + SSE） |
+| [manager](https://github.com/faying/luya-z-manager) | `zte-agent`（:9090）+ 管理网页 + 装机包 |
+| [touch-ui](https://github.com/faying/luya-z-touch-ui) | 前面板触屏界面、屏幕守护进程、进程监督与 Wi-Fi 兜底脚本 |
+| **[data-service](https://github.com/faying/luya-z-data-service)**（本仓库） | `zwrt-datad`：本机数据服务（`127.0.0.1:9460` 的 `/v2/state` + SSE） |
 
 ```
 zwrt-datad :9460 ──▶ 触屏界面 ──(eSIM 页)──▶ zte-agent :9090 ──▶ lpac ──▶ eUICC 卡
@@ -28,7 +28,7 @@ zwrt-datad :9460 ──▶ 触屏界面 ──(eSIM 页)──▶ zte-agent :909
 
 ## 快速开始
 
-在 U60 Pro 上**不要单独装**：用 manager 仓库的装机包一起装，见 **[快速上手](https://github.com/faying/zte-u60-pro-mu5250-manager/blob/main/docs/GETTING-STARTED.md)**。
+在设备上**不要单独装**：用 manager 仓库的装机包一起装，见 **[快速上手](https://github.com/faying/luya-z-manager/blob/main/docs/GETTING-STARTED.md)**。
 装机包把它放在 `/data/plugins/zwrt-datad/zwrt-datad`，由 procd 监督：
 
 ```sh
@@ -64,7 +64,7 @@ bash scripts/build.sh     # → zwrt-datad-aarch64（静态、已 strip）
 - [docs/STATE_SCHEMA.md](docs/STATE_SCHEMA.md)：内部快照的字段约定（`/v2` 的块从它切出来）
 - [docs/CONTROL_API.md](docs/CONTROL_API.md)：控制动作与安全边界
 - [docs/models/](docs/models/)：各机型模板
-- [docs/RUNTIME.md](docs/RUNTIME.md)：原版留下的运行说明（U60 Pro 装机包用自己的启动方式）
+- [docs/RUNTIME.md](docs/RUNTIME.md)：原版留下的运行说明（Luya-Z 装机包用自己的启动方式）
 
 ## 致谢
 

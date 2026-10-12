@@ -1,9 +1,9 @@
-# ZTE U60 Pro (MU5250) data service: zwrt-datad
+# Luya-Z data service: zwrt-datad
 
 **English** · [中文](README.zh-CN.md) · [API](docs/API.md)
 
 `zwrt-datad` runs on the device itself. It turns `ubus`, `uci`, `sysfs` and the device logs it needs into a stable JSON state, served over HTTP and SSE to the touch UI, scripts and other local services.
-It started from [33333s/zwrt-datad](https://github.com/33333s/zwrt-datad) and is now maintained independently, for the U60 Pro (MU5250): it adds MU5250 alignment fixes, a slow-data cache and a single ubus reader with a write-op layer, **and removes the original's self-updater (OTA), cloud client, WebShell and `/ubus` passthrough; the binary does not contact any Internet address**.
+It started from [33333s/zwrt-datad](https://github.com/33333s/zwrt-datad) and is now maintained independently as part of **Luya-Z** (hardware: ZTE U60 Pro, MU5250; not affiliated with ZTE): it adds MU5250 alignment fixes, a slow-data cache and a single ubus reader with a write-op layer, **and removes the original's self-updater (OTA), cloud client, WebShell and `/ubus` passthrough; the binary does not contact any Internet address**.
 
 The documents linked under `docs/` are in Chinese.
 
@@ -11,9 +11,9 @@ The documents linked under `docs/` are in Chinese.
 
 | Repo | Role on the device |
 |---|---|
-| [manager](https://github.com/faying/zte-u60-pro-mu5250-manager) | `zte-agent` (:9090) + admin web + install kit |
-| [touch-ui](https://github.com/faying/zte-u60-pro-mu5250-touch-ui) | Front-panel touch UI, screen daemon, process supervision and Wi-Fi fallback scripts |
-| **[data-service](https://github.com/faying/zte-u60-pro-mu5250-data-service)** (this repo) | `zwrt-datad`: local data service (`/v2/state` + SSE on `127.0.0.1:9460`) |
+| [manager](https://github.com/faying/luya-z-manager) | `zte-agent` (:9090) + admin web + install kit |
+| [touch-ui](https://github.com/faying/luya-z-touch-ui) | Front-panel touch UI, screen daemon, process supervision and Wi-Fi fallback scripts |
+| **[data-service](https://github.com/faying/luya-z-data-service)** (this repo) | `zwrt-datad`: local data service (`/v2/state` + SSE on `127.0.0.1:9460`) |
 
 ```
 zwrt-datad :9460 ──▶ touch UI ──(eSIM page)──▶ zte-agent :9090 ──▶ lpac ──▶ eUICC card
@@ -30,7 +30,7 @@ browser ──▶ zte-agent :9090 (API + admin web)
 
 ## Quick start
 
-On the U60 Pro, **don't install it on its own**: install it together with the manager repo's install kit, see **[Getting started](https://github.com/faying/zte-u60-pro-mu5250-manager/blob/main/docs/GETTING-STARTED.md)**.
+On the device, **don't install it on its own**: install it together with the manager repo's install kit, see **[Getting started](https://github.com/faying/luya-z-manager/blob/main/docs/GETTING-STARTED.md)**.
 The install kit puts it at `/data/plugins/zwrt-datad/zwrt-datad`, supervised by procd:
 
 ```sh
@@ -66,7 +66,7 @@ When building the install kit, point to it with `DATAD_BIN=…/zwrt-datad-aarch6
 - [docs/STATE_SCHEMA.md](docs/STATE_SCHEMA.md): fields of the internal snapshot the `/v2` blocks are cut from
 - [docs/CONTROL_API.md](docs/CONTROL_API.md): control actions and safety boundaries
 - [docs/models/](docs/models/): model templates
-- [docs/RUNTIME.md](docs/RUNTIME.md): runtime notes from the original (the U60 Pro install kit uses its own startup method)
+- [docs/RUNTIME.md](docs/RUNTIME.md): runtime notes from the original (the Luya-Z install kit uses its own startup method)
 
 ## Credits
 
