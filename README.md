@@ -1,5 +1,7 @@
 # Luya-Z data service: zwrt-datad
 
+> **Archived (2026-10-16).** This repository is no longer updated. The code now lives in [luya-z-manager](https://github.com/faying/luya-z-manager) (`crates/luyaz-core`).
+
 **English** · [中文](README.zh-CN.md) · [API](docs/API.md)
 
 `zwrt-datad` runs on the device itself. It turns `ubus`, `uci`, `sysfs` and the device logs it needs into a stable JSON state, served over HTTP and SSE to the touch UI, scripts and other local services.

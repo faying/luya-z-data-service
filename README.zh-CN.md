@@ -1,5 +1,7 @@
 # Luya-Z 数据服务：zwrt-datad
 
+> **已归档（2026-10-16）。** 本仓库不再更新，代码已并入 [luya-z-manager](https://github.com/faying/luya-z-manager)（`crates/luyaz-core`）。
+
 `zwrt-datad` 跑在设备本机，把 `ubus`、`uci`、`sysfs` 和必要的设备日志整理成稳定的 JSON 状态，通过 HTTP 和 SSE 提供给触屏界面、脚本和其他本机服务。
 本仓库最初基于 [33333s/zwrt-datad](https://github.com/33333s/zwrt-datad)，现在作为 **Luya-Z** 的一部分独立维护（适用硬件：中兴 U60 Pro，MU5250；和中兴没有关系）：加了 MU5250 的对齐修复、慢数据缓存、单一的 ubus 读取者和写操作层，**并删掉了原版的自更新（OTA）、云端、WebShell 和 `/ubus` 透传，程序不连任何外网地址**。
 
